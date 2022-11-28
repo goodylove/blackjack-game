@@ -11,16 +11,28 @@ console.log(randomNum);
 
 let firstCard = randomNum;
 let secondCard = randomNum2;
+let cards = [firstCard ,secondCard]
+console.log(cards);
 let hasBlackJack = false
 let isAlive = true
 let sum = firstCard + secondCard;
 
 
-startBtn.addEventListener("click",startGame)
 
-function startGame(){
 
-cardEl.textContent =  "card: " + firstCard + " " + secondCard
+
+
+function startGame() {
+    renderGame()
+}
+
+function renderGame(){
+
+cardEl.textContent =  "Card: "
+
+for(let i = 0; i<cards.length; i++ ){
+    cardEl.textContent +=cards[i] + " , "
+} 
 sumEl.textContent = "sum: " + sum;
 
 if(sum <= 20){
@@ -38,7 +50,13 @@ isAlive = false;
 }
 
 
+function newCard(){
+    let randnum3 =Math.floor(Math.random()*9 +1)
+    let card = randnum3;
+    cards.push(card) 
+    console.log("working");
 
+}
 
 
 
