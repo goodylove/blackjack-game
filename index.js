@@ -12,10 +12,14 @@ const congratSms = document.querySelector(".congrat-sms");
 
 // assigning random numbers to firstCard and secondCard 
 
+
+let userName = prompt("enter your name")
+
 let firstCard = getRandomNum()
 let secondCard = getRandomNum();
 let cards = []
 let sum = 0
+let count =0
 
 let hasBlackJack = false
 let isAlive = true
@@ -25,19 +29,19 @@ let isAlive = true
 // create an object to store player name and chips
 
 let player = {
-    name:'goodness',
-    chips:231,
+    name:userName,
+    chips:count,
 
 }
+playerEl.textContent = player.name  + ": $" + player.chips;
 
-playerEl.textContent = player.name  + ": $" + player.chips
 
 // function declarations
 
 // get random number function
 function getRandomNum(){
     let randomNum = Math.floor(Math.random() * 13 ) + 1
-
+    
     if(randomNum > 10){
         return 10
     }
@@ -47,7 +51,7 @@ function getRandomNum(){
     else{
         return randomNum
     }
-
+    
 }
 
 
@@ -64,37 +68,43 @@ function startGame() {
 
 // Render game function 
 function renderGame(){
-
-cardEl.textContent =  "Card: "
-
-for(let i = 0; i<cards.length; i++ ){
-    cardEl.textContent += cards[i] + " , "
-} 
-sumEl.textContent = "sum: " + sum;
-
-if(sum <= 20){
-    messageEl.textContent = "Do you want to draw a new game";
     
-}
-else if(sum === 21){
-    messageEl.textContent = "You've got BlackJack!";
-    hasBlackJack = true;
-    congratSms.classList.add("congrat")
+    cardEl.textContent =  "Card: "
+    
+    for(let i = 0; i<cards.length; i++ ){
+        cardEl.textContent += cards[i] + " , "
+    } 
+    sumEl.textContent = "sum: " + sum;
+    
+    if(sum <= 20){
+        messageEl.textContent = "Do you want to draw a new game";
+        
+    }
+    else if(sum === 21){
+        messageEl.textContent = "You've got BlackJack!";
+        hasBlackJack = true;
+        player.chips = count +=20
+        playerEl.textContent = player.name  + ": $" + player.chips + "point";
+        console.log(count);
+        
+        congratSms.classList.add("congrat")
+        congratSms.textContent = "congratulation "  +  player.name
+        
+        setTimeout(() => {
+            activiteBtn()
+        }, 5000);
+        
+        
    
-    setTimeout(() => {
+    }
+    else{
+        messageEl.textContent = "You're out of game";
         activiteBtn()
-    }, 5000);
-  
+        isAlive = false
 
-   
+    }
 }
-   else{
-messageEl.textContent = "You're out of game";
-activiteBtn()
-isAlive = false
 
-   }
-}
 
 function activiteBtn(){
     startBtn.classList.add("r-start-game")
@@ -127,6 +137,7 @@ function newCard(){
     
     
 }
+
 
 
 
