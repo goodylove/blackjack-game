@@ -5,24 +5,41 @@ const sumEl = document.getElementById("sum-el");
 const startBtn = document.getElementById("start-game");
 const newBtn = document.getElementById("new-card");
 
-let randomNum = Math.floor(Math.random() *21 + 1 )
-let randomNum2 = Math.floor(Math.random()*10)
-console.log(randomNum);
+// let randomNum2 = Math.floor(Math.random()*10)
+// console.log(randomNum);
 
-let firstCard = randomNum;
-let secondCard = randomNum2;
-let cards = [firstCard ,secondCard]
+let firstCard = getRandomNum()
+let secondCard = getRandomNum() ;
+let cards = []
 console.log(cards);
 let hasBlackJack = false
 let isAlive = true
-let sum = firstCard + secondCard;
+let sum = 0
 
+
+function getRandomNum(){
+    let randomNum = Math.floor(Math.random() * 13 ) + 1
+
+    if(randomNum > 10){
+        return 10
+    }
+    else if(randomNum === 1){
+        return 11
+    }
+    else{
+        return randomNum
+    }
+
+}
 
 
 
 
 
 function startGame() {
+
+    cards = [firstCard ,secondCard]
+    sum = firstCard + secondCard;
     renderGame()
 }
 
@@ -45,17 +62,23 @@ else if(sum === 21){
 }
    else{
 messageEl.textContent = "You're out of game";
-isAlive = false;
+isAlive = false
    }
 }
 
 
 function newCard(){
-    let randnum3 =Math.floor(Math.random()*9 +1)
-    let card = randnum3;
-    cards.push(card) 
-    console.log("working");
 
+    if(isAlive === true && hasBlackJack === false){
+      console.log(isAlive, hasBlackJack);
+        let card = getRandomNum()
+        cards.push(card) 
+        sum+=card
+        renderGame()
+    
+    }
+    
+    
 }
 
 
