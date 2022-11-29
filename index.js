@@ -6,8 +6,9 @@ const cardEl = document.getElementById("card-el");
 const sumEl = document.getElementById("sum-el");
 const startBtn = document.getElementById("start-game");
 const newBtn = document.getElementById("new-card");
-let isDisabled;
+const restartBtn = document.getElementById("restart-game")
 const playerEl = document.getElementById("player")
+const congratSms = document.querySelector(".congrat-sms");
 
 // assigning random numbers to firstCard and secondCard 
 
@@ -78,13 +79,34 @@ if(sum <= 20){
 else if(sum === 21){
     messageEl.textContent = "You've got BlackJack!";
     hasBlackJack = true;
+    congratSms.classList.add("congrat")
+   
+    setTimeout(() => {
+        activiteBtn()
+    }, 5000);
+  
+
+   
 }
    else{
 messageEl.textContent = "You're out of game";
-
+activiteBtn()
 isAlive = false
 
    }
+}
+
+function activiteBtn(){
+    startBtn.classList.add("r-start-game")
+newBtn.classList.add("r-new-game")
+restartBtn.style.display = "block"
+}
+
+
+// function restart game
+
+function restartGame(){
+    window.location.reload()
 }
 
 // new card function
@@ -97,6 +119,7 @@ function newCard(){
         sum += card
         renderGame()
     }
+    
     
        
    
