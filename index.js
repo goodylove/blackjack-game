@@ -9,9 +9,9 @@ const newBtn = document.getElementById("new-card");
 // console.log(randomNum);
 
 let firstCard = getRandomNum()
-let secondCard = getRandomNum() ;
+let secondCard = getRandomNum();
 let cards = []
-console.log(cards);
+
 let hasBlackJack = false
 let isAlive = true
 let sum = 0
@@ -75,7 +75,6 @@ function newCard(){
         cards.push(card) 
         sum+=card
         renderGame()
-    
     }
     
     
@@ -93,5 +92,5 @@ function newCard(){
 
 //     }
 // }
-// return max_num
+// return max_num;
 // }
